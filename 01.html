@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Contador</title>
+</head>
+<body>
+	<div id="app">
+		<button v-on:click="increase(2, $event)">Click Me</button>
+		<button v-on:click="counter++">Click Me</button>
+		<p> {{ counter * 2 > 10 ? 'Grater than 10' : "smaller than 10" }} </p>
+		<p v-on:mousemove="updateCoordinates">
+		Coordinates: {{ x }} / {{ y }}
+		- <span v-on:mousemove.stop="">DEAD SPOT</span>
+	</p>
+	<input type="text" v-on:keyup.enter.space="alertMe">
+	</div>
+
+	<script src="vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				counter : 0,
+				x: 0,
+				y: 0
+			},
+			methods: {
+				increase: function(step, event) {
+					this.counter += step;
+				},
+				updateCoordinates: function(event) {
+					this.x = event.clientX;
+					this.y = event.clientY;
+				},
+				alertMe: function() {
+					alert("alert");
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>
